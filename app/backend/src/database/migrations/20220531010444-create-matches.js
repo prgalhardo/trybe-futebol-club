@@ -9,24 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       hometeam: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         references: {
-          model: "Team",
-          key: "teamname",
+          model: "teams",
+          key: "id",
         },
       },
       hometeamgoals: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       awayteam: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         references: {
-          model: "Team",
-          key: "teamname",
+          model: "teams",
+          key: "id",
         },
       },
       awayteamgoals: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       inprogress: {
         type: Sequelize.BOOLEAN
