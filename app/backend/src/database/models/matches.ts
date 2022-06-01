@@ -2,18 +2,18 @@ import { Model, DataTypes } from 'sequelize';
 import connection from '.';
 
 class Match extends Model {
-  public hometeam: number;
-  public hometeamgoals: number;
-  public awayteam: number;
-  public awayteamgoals: number;
-  public inprogress: boolean;
+  public homeTeam: number;
+  public homeTeamGoals: number;
+  public awayTeam: number;
+  public awayTeamGoals: number;
+  public inProgress: boolean;
 }
 Match.init({
-  hometeam: DataTypes.NUMBER,
-  hometeamgoals: DataTypes.NUMBER,
-  awayteam: DataTypes.NUMBER,
-  awayteamgoals: DataTypes.NUMBER,
-  inprogress: DataTypes.BOOLEAN,
+  homeTeam: DataTypes.NUMBER,
+  homeTeamGoals: DataTypes.NUMBER,
+  awayTeam: DataTypes.NUMBER,
+  awayTeamGoals: DataTypes.NUMBER,
+  inProgress: DataTypes.BOOLEAN,
 }, {
   sequelize: connection,
   underscored: true,

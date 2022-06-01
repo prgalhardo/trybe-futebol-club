@@ -8,28 +8,33 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      hometeam: {
+      homeTeam: {
         type: Sequelize.INTEGER,
         references: {
           model: "teams",
           key: "id",
         },
+        field: 'home_team',
       },
-      hometeamgoals: {
-        type: Sequelize.INTEGER
+      homeTeamGoals: {
+        type: Sequelize.INTEGER,
+        field: 'home_team_goals'
       },
-      awayteam: {
+      awayTeam: {
         type: Sequelize.INTEGER,
         references: {
           model: "teams",
           key: "id",
         },
+        field: 'away_team'
       },
-      awayteamgoals: {
-        type: Sequelize.INTEGER
+      awayTeamGoals: {
+        type: Sequelize.INTEGER,
+        field: 'away_team_goals'
       },
-      inprogress: {
-        type: Sequelize.BOOLEAN
+      inProgress: {
+        type: Sequelize.BOOLEAN,
+        field: 'in_progress'
       },
     });
   },
