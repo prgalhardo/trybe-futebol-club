@@ -28,6 +28,7 @@ class App {
     // ...
     this.app.listen(PORT, () =>
       console.log(`Escutando na porta ${PORT}`));
+    this.app.use(express.json())
   }
 }
 
