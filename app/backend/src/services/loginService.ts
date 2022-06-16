@@ -3,7 +3,7 @@ import User from '../database/models/users';
 import IUser from '../interfaces/user.interface';
 import Token from '../helpers/generateToken';
 
-class UserService {
+class LoginService {
   public create = async (email: string, password: string): Promise<IUser | null> => {
     const loginInfos = await User.findOne({ where: { email } });
 
@@ -31,4 +31,4 @@ class UserService {
   };
 }
 
-export default UserService;
+export default LoginService;
