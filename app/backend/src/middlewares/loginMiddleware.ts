@@ -1,12 +1,14 @@
-import validator from 'validator';
+// import validator from 'validator';
 import { Request, Response, NextFunction } from 'express';
 
 const messageOne = 'Incorrect email or password';
 
 function validateEmail(email: string) {
   if (!email) return ({ status: 400, message: 'All fields must be filled' });
-  if (validator.isEmpty(email)) return ({ status: 401, message: messageOne });
   if (typeof email !== 'string') return ({ status: 401, message: messageOne });
+  if (!email.includes('@') || !email.includes('.com')) {
+    return ({ status: 401, message: messageOne });
+  }
 }
 
 function validatePassword(password: string) {

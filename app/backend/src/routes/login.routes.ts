@@ -6,5 +6,6 @@ const loginRoutes = Router();
 const loginInfos = new LoginController();
 
 loginRoutes.post('/login', validateLoginBody, loginInfos.create);
+loginRoutes.get('/login');
 
 export default loginRoutes;
