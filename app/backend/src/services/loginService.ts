@@ -29,6 +29,13 @@ class LoginService {
 
     return finalUserObject;
   };
+
+  public findOne = async (id: number): Promise<string | null> => {
+    const loginInfos = await User.findOne({ where: { id } });
+    if (loginInfos === null) throw new Error('User not found');
+    const { role } = loginInfos;
+    return role;
+  };
 }
 
 export default LoginService;

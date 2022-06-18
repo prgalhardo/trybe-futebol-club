@@ -1,4 +1,3 @@
-// import validator from 'validator';
 import { Request, Response, NextFunction } from 'express';
 
 const messageOne = 'Incorrect email or password';

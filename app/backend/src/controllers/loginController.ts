@@ -15,6 +15,16 @@ class LoginController {
       next(error);
     }
   };
+
+  public findOne = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.body.user;
+      const loginInfos = await this.loginService.findOne(id);
+      return res.status(200).json(loginInfos);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default LoginController;
