@@ -41,6 +41,15 @@ class MatchesService {
     if (matchesInfos === null) throw new Error('Matches not found');
     return matchesInfos;
   };
+
+  public create = async ({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress }:
+  Match): Promise<Match> => {
+    const newMacthes = await Match.create({
+      homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress,
+    });
+
+    return newMacthes;
+  };
 }
 
 export default MatchesService;
