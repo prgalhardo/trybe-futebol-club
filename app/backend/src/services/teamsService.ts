@@ -7,6 +7,12 @@ class TeamsService {
     if (teamsInfos === null) throw new Error('Teams not found');
     return teamsInfos;
   };
+
+  public findById = async (id: string): Promise<ITeam | null> => {
+    const team = await Team.findByPk(id);
+    if (team === null) throw new Error('Team not found');
+    return team;
+  };
 }
 
 export default TeamsService;

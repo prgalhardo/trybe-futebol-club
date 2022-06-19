@@ -12,6 +12,16 @@ class TeamsController {
       next(error);
     }
   };
+
+  public findById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const team = await this.teamsService.findById(id);
+      return res.status(200).json(team);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default TeamsController;
