@@ -1,5 +1,6 @@
 import * as express from 'express';
 import loginRoutes from './routes/login.routes';
+import teamsRoutes from './routes/teams.routes';
 
 class App {
   public app: express.Express;
@@ -31,6 +32,7 @@ class App {
       console.log(`Escutando na porta ${PORT}`));
     this.app.use(express.json());
     this.app.use(loginRoutes);
+    this.app.use(teamsRoutes);
   }
 }
 
