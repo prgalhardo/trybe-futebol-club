@@ -30,6 +30,27 @@ class MatchesController {
       next(error);
     }
   };
+
+  public updateInProgress = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      await this.matchesService.updateInProgress(id);
+      return res.status(200).json({ message: 'Finished' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public updateMatches = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+      await this.matchesService.updateMatches(id, homeTeamGoals, awayTeamGoals);
+      return res.status(200).json({ message: 'Updated match' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default MatchesController;

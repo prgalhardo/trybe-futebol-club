@@ -50,6 +50,22 @@ class MatchesService {
 
     return newMacthes;
   };
+
+  public updateInProgress = async (id: string): Promise<Match | null> => {
+    const findMatchById = await Match.findOne({ where: { id } });
+    await Match.update({ inProgress: false }, { where: { id } });
+    return findMatchById;
+  };
+
+  public updateMatches = async (
+    id: string,
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+  ): Promise<Match | null> => {
+    const findMatchById = await Match.findOne({ where: { id } });
+    await Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+    return findMatchById;
+  };
 }
 
 export default MatchesService;
