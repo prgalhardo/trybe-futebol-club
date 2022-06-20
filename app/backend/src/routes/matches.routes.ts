@@ -14,7 +14,7 @@ matchesRoutes.post(
   validateEqualTeams,
   matchesInfos.create,
 );
-matchesRoutes.patch('/matches/:id/finish', matchesInfos.updateInProgress);
+matchesRoutes.patch('/cle', matchesInfos.updateInProgress);
 matchesRoutes.patch('/matches/:id', matchesInfos.updateMatches);
 
 export default matchesRoutes;

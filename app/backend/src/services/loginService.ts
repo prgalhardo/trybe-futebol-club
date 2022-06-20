@@ -7,9 +7,9 @@ class LoginService {
   public create = async (email: string, password: string): Promise<IUser | null> => {
     const loginInfos = await User.findOne({ where: { email } });
 
-    if (!loginInfos) throw new Error('Incorrect email or password');
+    if (loginInfos === null) throw new Error('Incorrect email or password');
 
-    if (!Bcrypt.compareSync(password, loginInfos.password)) {
+    if (!Bcrypt.compareSync(password, loginInfos?.password as string)) {
       throw new Error('Incorrect email or password');
     }
 

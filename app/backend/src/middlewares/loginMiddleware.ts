@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
+import * as Bcrypt from 'bcryptjs';
+import User from '../database/models/users';
 
 const messageOne = 'Incorrect email or password';
 
@@ -26,5 +28,21 @@ function validateLoginBody(req: Request, res: Response, next: NextFunction) {
 
   next();
 }
+
+export const validateEmailInDB = async (req: Request, res: Response, next: NextFunction) => {
+  const { email } = req.body;
+  const equalEmail = await User.findOne({ where: { email } });
+  if (!equalEmail) return res.status(401).json({ message: messageOne });
+  next();
+};
+
+export const validatePasswordInDB = async (req: Request, res: Response, next: NextFunction) => {
+  const { email, password } = req.body;
+  const equalEmail = await User.findOne({ where: { email } });
+  if (!Bcrypt.compareSync(password, equalEmail?.password as string)) {
+    return res.status(401).json({ message: messageOne });
+  }
+  next();
+};
 
 export default validateLoginBody;
