@@ -16,7 +16,7 @@ export const validateTeam = async (req: Request, res: Response, next: NextFuncti
   const teamAway = await Team.findByPk(awayTeam);
 
   if (!teamHome || !teamAway) {
-    return res.status(401).json({ message: 'There is no team with such id!' });
+    return res.status(404).json({ message: 'There is no team with such id!' });
   }
   next();
 };
