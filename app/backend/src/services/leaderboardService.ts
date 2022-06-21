@@ -21,7 +21,7 @@ class LeaderBoardService {
     return leaderBoardHome;
   };
 
-  public leaderBoardHome = async (arrTeams: any[], objMatches: Match[]) => {
+  public leaderBoardHome = async (arrTeams: string[], objMatches: Match[]) => {
     const arrLeaderBoardHome: ILeaderBoard[] = [];
     arrTeams.forEach((teamName: string) => {
       const allInfosMatches = objMatches.filter(({ teamHome }) => teamHome.teamName === teamName);
@@ -31,6 +31,7 @@ class LeaderBoardService {
         totalGames: this.totalGames(allInfosMatches),
         totalVictories: this.totalVictories(allInfosMatches),
         totalDraws: this.totalDraws(allInfosMatches),
+        totalLosses: this.totalLosses(allInfosMatches),
       });
     });
     return arrLeaderBoardHome;
@@ -67,6 +68,14 @@ class LeaderBoardService {
       if (homeTeamGoals === awayTeamGoals) draws += 1;
     });
     return draws;
+  };
+
+  private totalLosses = (matchesInfos: Match[]): number => {
+    let losses = 0;
+    matchesInfos.forEach(({ homeTeamGoals, awayTeamGoals }) => {
+      if (homeTeamGoals < awayTeamGoals) losses += 1;
+    });
+    return losses;
   };
 }
 
