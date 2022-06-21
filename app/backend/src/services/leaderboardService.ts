@@ -33,6 +33,7 @@ class LeaderBoardService {
         totalDraws: this.totalDraws(allInfosMatches),
         totalLosses: this.totalLosses(allInfosMatches),
         goalsFavor: this.goalsFavor(allInfosMatches),
+        goalsOwn: this.goalsOwn(allInfosMatches),
       });
     });
     return arrLeaderBoardHome;
@@ -85,6 +86,14 @@ class LeaderBoardService {
       if (homeTeamGoals) goalsFavor += homeTeamGoals;
     });
     return goalsFavor;
+  };
+
+  private goalsOwn = (matchesInfos: Match[]): number => {
+    let goalsOwn = 0;
+    matchesInfos.forEach(({ awayTeamGoals }) => {
+      if (awayTeamGoals) goalsOwn += awayTeamGoals;
+    });
+    return goalsOwn;
   };
 }
 

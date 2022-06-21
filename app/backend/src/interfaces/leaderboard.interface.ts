@@ -6,7 +6,7 @@ interface ILeaderBoard {
   totalDraws: number,
   totalLosses: number,
   goalsFavor: number,
-  // goalsOwn: number,
+  goalsOwn: number,
   // goalsBalance: number,
   // efficiency: number,
 }
