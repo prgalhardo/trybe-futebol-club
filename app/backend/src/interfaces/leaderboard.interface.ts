@@ -3,7 +3,7 @@ interface ILeaderBoard {
   totalPoints: number,
   totalGames: number,
   totalVictories: number,
-  // totalDraws: number,
+  totalDraws: number,
   // totalLosses: number,
   // goalsFavor: number,
   // goalsOwn: number,
