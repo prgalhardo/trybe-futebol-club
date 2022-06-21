@@ -12,7 +12,7 @@ class LeaderBoardService {
     return filteredFinishedMatches as Match[];
   };
 
-  public homeTeamNames = async () => {
+  private homeTeamNames = async () => {
     const allFinishedMatches = await this.finishedMatches();
     const allTeamNames = allFinishedMatches.map(({ teamHome }) => teamHome.teamName);
     const filteredDuplicateNames = allTeamNames
@@ -21,7 +21,7 @@ class LeaderBoardService {
     return leaderBoardHome;
   };
 
-  public leaderBoardHome = async (arrTeams: string[], objMatches: Match[]) => {
+  private leaderBoardHome = async (arrTeams: string[], objMatches: Match[]) => {
     const arrLeaderBoardHome: ILeaderBoard[] = [];
     arrTeams.forEach((teamName: string) => {
       const allInfosMatches = objMatches.filter(({ teamHome }) => teamHome.teamName === teamName);
@@ -102,6 +102,18 @@ class LeaderBoardService {
   private goalsBalance = (matchesInfos: Match[]): number => {
     const goalsBalance = this.goalsFavor(matchesInfos) - this.goalsOwn(matchesInfos);
     return goalsBalance;
+  };
+
+  public sortedLeaderBoard = async () => {
+    const leaderBoard = await this.homeTeamNames();
+    const sortedleaderBoard = leaderBoard.sort((a, b) =>
+      b.totalPoints - a.totalPoints
+    || b.totalVictories - a.totalVictories
+    || b.goalsBalance - a.goalsBalance
+    || b.goalsFavor - a.goalsFavor
+    || a.goalsOwn - b.goalsOwn);
+
+    return sortedleaderBoard;
   };
 }
 
