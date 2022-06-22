@@ -2,7 +2,7 @@ import Match from '../database/models/matches';
 import MatchesService from './matchesService';
 import ILeaderBoard from '../interfaces/leaderboard.interface';
 
-class LeaderBoardService {
+class LeaderBoardHomeService {
   constructor(private matchesService = new MatchesService()) { }
 
   private finishedMatches = async () => {
@@ -117,4 +117,4 @@ class LeaderBoardService {
   };
 }
 
-export default LeaderBoardService;
+export default LeaderBoardHomeService;

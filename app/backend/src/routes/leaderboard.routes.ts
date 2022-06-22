@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import LeaderBoardController from '../controllers/leaderboardController';
+import LeaderBoardHomeController from '../controllers/leaderBoardHomeController';
 
 const leaderBoardRoutes = Router();
-const leaderBoardInfos = new LeaderBoardController();
+const leaderBoardHomeInfos = new LeaderBoardHomeController();
 
-leaderBoardRoutes.get('/leaderboard/home', leaderBoardInfos.finishedMatches);
+leaderBoardRoutes.get('/leaderboard/home', leaderBoardHomeInfos.finishedMatches);
+leaderBoardRoutes.get('/leaderboard/away');
 
 export default leaderBoardRoutes;

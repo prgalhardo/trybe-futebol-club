@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import LeaderBoardService from '../services/leaderboardService';
+import LeaderBoardHomeService from '../services/leaderBoardHomeService';
 
-class LeaderBoardController {
-  constructor(private leaderBoardService = new LeaderBoardService()) { }
+class LeaderBoardHomeController {
+  constructor(private leaderBoardService = new LeaderBoardHomeService()) { }
 
   public finishedMatches = async (_req: Request, res: Response, _next: NextFunction) => {
     const allMatches = await this.leaderBoardService.sortedLeaderBoard();
@@ -10,4 +10,4 @@ class LeaderBoardController {
   };
 }
 
-export default LeaderBoardController;
+export default LeaderBoardHomeController;
