@@ -52,7 +52,7 @@ describe('Login do usuário', () => {
        .post('/login')
        .send({
          email: 'usuario@email.com',
-         password: '123456',
+         password: '1234567',
        });
 
     expect(chaiHttpResponse.status).to.be.equal(401);
@@ -65,8 +65,8 @@ describe('Login do usuário', () => {
        .request(app)
        .post('/login')
        .send({
-         email: 'usua@emai.com',
-         password: '1234567',
+         email: 'usuario@email.com',
+         password: '123456',
        });
 
     expect(chaiHttpResponse.status).to.be.equal(401);
