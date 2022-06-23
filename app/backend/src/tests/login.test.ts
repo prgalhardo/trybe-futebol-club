@@ -73,4 +73,30 @@ describe('Login do usuário', () => {
     expect(chaiHttpResponse.body).to.have.property('message');
     expect(chaiHttpResponse.body.message).to.be.equal('Incorrect email or password');
   });
+
+  it('Não é possível fazer o login sem passar o campo e-mail', async () => {
+    chaiHttpResponse = await chai
+       .request(app)
+       .post('/login')
+       .send({
+         password: '123456',
+       });
+
+    expect(chaiHttpResponse.status).to.be.equal(400);
+    expect(chaiHttpResponse.body).to.have.property('message');
+    expect(chaiHttpResponse.body.message).to.be.equal('All fields must be filled');
+  });
+
+  it('Não é possível fazer o login sem passar o campo password', async () => {
+    chaiHttpResponse = await chai
+       .request(app)
+       .post('/login')
+       .send({
+         email: 'usuario@email.com',
+       });
+
+      expect(chaiHttpResponse.status).to.be.equal(400);
+      expect(chaiHttpResponse.body).to.have.property('message');
+      expect(chaiHttpResponse.body.message).to.be.equal('All fields must be filled');
+  });
 });
