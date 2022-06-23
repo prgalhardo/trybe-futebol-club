@@ -5,7 +5,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import Team from '../database/models/teams';
-import { allTeams, specificTeam } from './mocks/teamMocks';
+import allTeams from './mocks/teamMocks';
 
 import { Response } from 'superagent';
 
@@ -32,8 +32,35 @@ describe('Teste sobre o retorno de todos os times', () => {
        .get('/teams')
        .send();
 
-    expect(chaiHttpResponse.status).to.be.equal(200);
-    expect(chaiHttpResponse.body).to.be.an('array');
+      expect(chaiHttpResponse.status).to.be.equal(200);
+  });
+
+  it('Ao fazer o request os times retornam dentro de um array', async () => {
+    chaiHttpResponse = await chai
+       .request(app)
+       .get('/teams')
+       .send();
+
+      expect(chaiHttpResponse.body).to.be.an('array');
+  });
+
+  it('Ao fazer o request retornam 16 times dentro do array', async () => {
+    chaiHttpResponse = await chai
+       .request(app)
+       .get('/teams')
+       .send();
+
+      expect(chaiHttpResponse.body).to.be.lengthOf(16);
+  });
+
+  it('Ao fazer o request existam "id" e "teamName" em cada elemento do array', async () => {
+    chaiHttpResponse = await chai
+       .request(app)
+       .get('/teams')
+       .send();
+
+      expect(chaiHttpResponse.body).to.not.have.property('id');
+      expect(chaiHttpResponse.body).to.have.property('teamName');
   });
 });
 
@@ -43,7 +70,7 @@ describe('Teste sobre o retorno de um time específico', () => {
   before(async () => {
     sinon
       .stub(Team, "findByPk")
-      .resolves(specificTeam as Team);
+      .resolves(allTeams[1] as Team);
   });
 
   after(()=>{
@@ -53,10 +80,18 @@ describe('Teste sobre o retorno de um time específico', () => {
   it('Ao fazer o request com um id específico o time correspondente é retornado com sucesso', async () => {
     chaiHttpResponse = await chai
        .request(app)
-       .get('/teams/:id')
+       .get('/teams/1')
        .send();
 
     expect(chaiHttpResponse.status).to.be.equal(200);
+  });
+
+  it('Ao fazer o request com um id específico tenha as propriedades "id" e "teamName"', async () => {
+    chaiHttpResponse = await chai
+       .request(app)
+       .get('/teams/1')
+       .send();
+
     expect(chaiHttpResponse.body).to.have.property('id');
     expect(chaiHttpResponse.body).to.have.property('teamName');
   });

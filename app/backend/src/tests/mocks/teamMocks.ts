@@ -65,9 +65,4 @@ const allTeams = [
 	}
 ]
 
-const specificTeam = {
-  'id': 1,
-	'teamName': 'Avaí/Kindermann',
-}
-
-export { allTeams, specificTeam };
+export default allTeams;
