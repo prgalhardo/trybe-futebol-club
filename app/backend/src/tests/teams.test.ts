@@ -59,8 +59,8 @@ describe('Teste sobre o retorno de todos os times', () => {
        .get('/teams')
        .send();
 
-      expect(chaiHttpResponse.body).to.not.have.property('id');
-      expect(chaiHttpResponse.body).to.have.property('teamName');
+      expect(chaiHttpResponse.body[1]).to.have.property('id');
+      expect(chaiHttpResponse.body[1]).to.have.property('teamName');
   });
 });
 

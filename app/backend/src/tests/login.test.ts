@@ -51,7 +51,7 @@ describe('Login do usuário', () => {
        .request(app)
        .post('/login')
        .send({
-         email: 'usuario@email.com',
+         email: 'usuarioemail.com',
          password: '1234567',
        });
 

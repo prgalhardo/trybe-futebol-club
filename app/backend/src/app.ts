@@ -24,7 +24,11 @@ class App {
     };
 
     this.app.use(accessControl);
-    // ...
+    this.app.use(express.json());
+    this.app.use(loginRoutes);
+    this.app.use(teamsRoutes);
+    this.app.use(matchesRoutes);
+    this.app.use(leaderBoardRoutes);
   }
 
   // ...
@@ -32,11 +36,6 @@ class App {
     // ...
     this.app.listen(PORT, () =>
       console.log(`Escutando na porta ${PORT}`));
-    this.app.use(express.json());
-    this.app.use(loginRoutes);
-    this.app.use(teamsRoutes);
-    this.app.use(matchesRoutes);
-    this.app.use(leaderBoardRoutes);
   }
 }
 
